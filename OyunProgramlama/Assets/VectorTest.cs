@@ -23,21 +23,33 @@ public class VectorTest : MonoBehaviour
         point1 = p1Transform.position;
         point2 = p2Transform.position;
 
-        float magnitute = Mathf.Sqrt(Mathf.Pow(point1.x, 2) + Mathf.Pow(point1.y, 2));
+        //float magnitute = Mathf.Sqrt(Mathf.Pow(point1.x, 2) + Mathf.Pow(point1.y, 2));
 
-        Vector3 unitPoint1 = point1 / point1.magnitude;
-        //point1.normalized = point1 / point1.magnitude;
+        //Vector3 unitPoint1 = point1 / point1.magnitude;
+        ////point1.normalized = point1 / point1.magnitude;
 
 
-        Debug.Log(unitPoint1);
-        //Debug.Log(point1.magnitude); //hazır fonksiyon aynı hesaplamayı yapar.
+        //Debug.Log(unitPoint1);
+        ////Debug.Log(point1.magnitude); //hazır fonksiyon aynı hesaplamayı yapar.
+
+
+        float dotProduct = Vector3.Dot(point1, point2);
+        //Debug.Log(dotProduct);
+
+        //a.b = |a|.|b|.cos(theta)
+        //cos(theta)=a.b / (|a||b|)
+        //theta = acos(a.b/ (|a||b|))
+        float thetaRadian = Mathf.Acos(dotProduct / (point1.magnitude * point2.magnitude));
+        float theta = thetaRadian * Mathf.Rad2Deg;
+        Debug.Log(theta);
+
 
         Debug.DrawLine(Vector3.zero, point1, Color.red);
         Debug.DrawLine(Vector3.zero, point2, Color.blue);
-        Debug.DrawLine(Vector3.zero, point1+point2, Color.magenta);
-        Debug.DrawLine(Vector3.zero, point1-point2, Color.black);
+        //Debug.DrawLine(Vector3.zero, point1+point2, Color.magenta);
+        //Debug.DrawLine(Vector3.zero, point1-point2, Color.black);
 
 
-        Debug.DrawLine(Vector3.zero, unitPoint1, Color.green); //Debug.Log(point1.normalized);
+       // Debug.DrawLine(Vector3.zero, unitPoint1, Color.green); //Debug.Log(point1.normalized);
     }
 }
